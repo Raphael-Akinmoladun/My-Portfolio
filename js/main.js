@@ -176,11 +176,8 @@ document.addEventListener('DOMContentLoaded', () => {
                     throw new Error('Form submission failed');
                 }
             } catch (error) {
-                // If Netlify submission fails (e.g., running locally),
-                // still show success for demo purposes
-                console.log('Form submitted (Netlify Forms will handle this in production)');
-                contactForm.style.display = 'none';
-                formSuccess.classList.add('show');
+                console.error('Form submission error:', error);
+                alert('Oops! There was a problem submitting your form. Make sure you are viewing the live Netlify site.');
             }
 
             submitBtn.textContent = originalText;
