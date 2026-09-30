@@ -126,6 +126,40 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // ===========================
+    // Count-up animation for highlight numbers
+    // ===========================
+    const countUpElements = document.querySelectorAll('.highlight-number[data-count]');
+
+    const countUpObserver = new IntersectionObserver(
+        (entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const el = entry.target;
+                    const target = parseInt(el.getAttribute('data-count'), 10);
+                    let current = 0;
+                    const duration = 1200;
+                    const stepTime = Math.max(Math.floor(duration / target), 50);
+
+                    const counter = setInterval(() => {
+                        current++;
+                        el.textContent = current;
+                        if (current >= target) {
+                            clearInterval(counter);
+                        }
+                    }, stepTime);
+
+                    countUpObserver.unobserve(el);
+                }
+            });
+        },
+        { threshold: 0.5 }
+    );
+
+    countUpElements.forEach(el => {
+        countUpObserver.observe(el);
+    });
+
+    // ===========================
     // Smooth scroll for anchor links
     // ===========================
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {

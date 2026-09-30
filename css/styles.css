@@ -519,6 +519,139 @@ button {
     gap: 10px;
 }
 
+/* About Standout Paragraph */
+.about-standout {
+    color: var(--accent);
+    font-weight: 500;
+    font-size: 0.95rem;
+    padding: 16px 20px;
+    background: var(--accent-dim);
+    border-left: 3px solid var(--accent);
+    border-radius: 0 var(--radius-xs) var(--radius-xs) 0;
+    margin-top: 4px;
+}
+
+/* About Highlight Cards */
+.about-highlights {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+    margin-top: 56px;
+}
+
+.highlight-card {
+    padding: 28px 24px;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    position: relative;
+    overflow: hidden;
+    transition: var(--transition);
+}
+
+.highlight-card::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: var(--brown-gradient);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform var(--transition);
+}
+
+.highlight-card:hover {
+    transform: translateY(-4px);
+    border-color: var(--border-hover);
+    box-shadow: 0 8px 30px rgba(44, 24, 16, 0.07);
+}
+
+.highlight-card:hover::before {
+    transform: scaleX(1);
+}
+
+.highlight-number {
+    font-family: var(--font-serif);
+    font-size: 2.6rem;
+    font-weight: 400;
+    color: var(--accent);
+    line-height: 1;
+    letter-spacing: -1px;
+}
+
+.highlight-suffix {
+    font-family: var(--font-serif);
+    font-size: 2rem;
+    font-weight: 400;
+    color: var(--accent-light);
+    line-height: 1;
+    margin-left: -4px;
+    margin-top: -8px;
+}
+
+.highlight-card:first-child {
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 2px;
+}
+
+.highlight-card:first-child .highlight-label {
+    flex-basis: 100%;
+    margin-top: 8px;
+}
+
+.highlight-icon {
+    width: 44px;
+    height: 44px;
+    border-radius: var(--radius-sm);
+    background: var(--accent-dim);
+    border: 1px solid var(--accent-border);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--accent);
+    transition: var(--transition);
+}
+
+.highlight-card:hover .highlight-icon {
+    background: var(--accent);
+    color: white;
+    border-color: var(--accent);
+}
+
+.highlight-label {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    line-height: 1.4;
+    letter-spacing: -0.2px;
+}
+
+.highlight-label span {
+    font-weight: 400;
+    font-size: 0.78rem;
+    color: var(--text-muted);
+    letter-spacing: 0;
+}
+
+/* Stagger highlight cards animation */
+.about-highlights.revealed .highlight-card {
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInUp 0.5s var(--ease) forwards;
+}
+
+.about-highlights.revealed .highlight-card:nth-child(1) { animation-delay: 0.05s; }
+.about-highlights.revealed .highlight-card:nth-child(2) { animation-delay: 0.12s; }
+.about-highlights.revealed .highlight-card:nth-child(3) { animation-delay: 0.19s; }
+.about-highlights.revealed .highlight-card:nth-child(4) { animation-delay: 0.26s; }
+
 /* ===========================
    Skills Section
    =========================== */
@@ -1030,6 +1163,11 @@ button {
         font-size: 2.5rem;
     }
 
+    .about-highlights {
+        grid-template-columns: 1fr 1fr;
+        margin-top: 40px;
+    }
+
     /* Skills */
     .skills-grid {
         grid-template-columns: 1fr 1fr;
@@ -1069,6 +1207,10 @@ button {
     }
 
     .skills-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .about-highlights {
         grid-template-columns: 1fr;
     }
 
